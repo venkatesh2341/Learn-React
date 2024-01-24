@@ -21,6 +21,11 @@ const parent= React.createElement("parent", { id: "parent"},
     ]
 )
 
+
+
+
+ 
+
 const root= ReactDOM.createRoot(document.getElementById("root"));
 root.render(parent);
 

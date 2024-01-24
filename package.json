@@ -1,0 +1,18 @@
+{
+  "name": "learn-react",
+  "version": "1.0.0",
+  "description": "This is Learn React by Venkatesh Karri",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/venkatesh2341/Learn-React.git)"
+  },
+  "author": "Venkatesh Karri",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.11.0"
+  }
+}
