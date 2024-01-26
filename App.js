@@ -6,25 +6,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 
-const parent= React.createElement("parent", { id: "parent"}, 
+const heading = React.createElement("h1", {id:"h1"}, "Im react heading")
+const jsxHeading= <h1>
+    Im jsx headdddding
+    <br></br>
+    <span> hellow boy</span>
+</h1>
 
-    [
-        React.createElement("child", {id:"child"},
-            [
-                React.createElement("h1", {}, "I'm a h1 tag insed two div"),
-                React.createElement("h2", {}, "I'm a h2 tag insed two divs and sibling of h1")
-            ]
-        ),
-        React.createElement("child2", {id:"child2"},
-            [
-                React.createElement("h1", {}, "I'm a h1 tag insed two divs"),
-                React.createElement("h2", {}, "I'm a h2 tag insed two divs and sibling of h1"),
-            ]
-        )
-
-    ]
-)
+console.log(heading)
+console.log(jsxHeading)
 
 const root= ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+root.render(jsxHeading);
 
