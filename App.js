@@ -6,16 +6,32 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 
-const heading = React.createElement("h1", {id:"h1"}, "Im react heading")
-const jsxHeading= <h1>
-    Im jsx headdddding
-    <br></br>
-    <span> hellow boy</span>
-</h1>
-
-console.log(heading)
-console.log(jsxHeading)
-
+const MainTitle = <h1>Platinum Fish</h1>
+const TitleCard = ()=>(
+    <div>
+       
+        <h1>Gold Fish</h1>
+    </div>
+)
+let num= 788;
+const HeadingComponent = () =>
+{ 
+    return (
+     (
+        <div>
+            {MainTitle}
+            <TitleCard > </TitleCard>
+            <TitleCard />
+            {TitleCard()}
+            <h1>React functional component</h1>
+        </div>
+    
+    )
+)
+     }
 const root= ReactDOM.createRoot(document.getElementById("root"));
-root.render(jsxHeading);
+root.render(<HeadingComponent />);
 
+
+
+// root.render(HeadingReact)
