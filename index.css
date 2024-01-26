@@ -20,3 +20,26 @@
     padding: 10;
     margin: 10;
 }
+
+.resto-card{
+    
+    padding: 5px;
+    width: 200px;
+    height: 310px;
+    background-color: #f0f0f0;
+}
+
+.resto-card:hover {
+    border: 1px black solid;
+    cursor: pointer;
+}
+
+.resto-logo{
+    width: 100%;
+}
+
+.resto-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: right;
+}

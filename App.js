@@ -32,10 +32,44 @@ const Header = () => {
         </div>
     )
 }
+const nameStyle= {
+    color: "red"
+}
+
+const RestoCard = (props) => {
+    console.log(props)
+    return (
+        <div className="resto-card">
+            <img className="resto-logo"  alt="resto-logo" src= "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/a390arrvxwcpzmrhozw3" />
+            <h3 style={nameStyle} >{props.resName}</h3>
+            <h4>{props.cuisine}</h4>
+            <h4>{props.rating}</h4>
+            <h4>28 Min</h4>
+        </div>
+    )
+}
+
+const Body = () => {
+    return (
+        <div className= "body">
+            <div className= "search">
+                <h3>Search</h3>
+            </div>
+            <div className= "resto-container">
+                <RestoCard resName="Anu Kitchens" cuisine ="Biryani, Mandi, Tandoori"  rating="4.5 Rating" ></RestoCard>
+                <RestoCard resName="VFC" cuisine ="Dosa, Idli, Parota"  rating="3.5 Rating" ></RestoCard>
+                
+            </div>
+        </div>
+    )
+}
 
 const AppLayout= () => {
     return (
+        <div className="app-layout">
         <Header></Header>
+        <Body></Body>
+        </div>
     )
 }
 
