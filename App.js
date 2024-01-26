@@ -1,37 +1,48 @@
-// const heading = React.createElement("h1",{id:"abc"}, "Hello World by React" );
-// const root= ReactDOM.createRoot(document.getElementById("root"));
-// root.render(heading);
-
 import React from "react";
 import ReactDOM from "react-dom";
 
+/*
+ header:
+    - logo
+    - nav-items
+ body:
+    restaurants container
+        -restaurants cards
+ footer:
+    contacts
+    links
+*/
 
-const MainTitle = <h1>Platinum Fish</h1>
-const TitleCard = ()=>(
-    <div>
-       
-        <h1>Gold Fish</h1>
-    </div>
-)
-let num= 788;
-const HeadingComponent = () =>
-{ 
+const Header = () => {
     return (
-     (
-        <div>
-            {MainTitle}
-            <TitleCard > </TitleCard>
-            <TitleCard />
-            {TitleCard()}
-            <h1>React functional component</h1>
+        <div className= "header">
+            <div className = "log-container">
+                <img 
+                className="logo"
+                src="https://marketplace.canva.com/EAFowsrK6x8/1/0/1600w/canva-red-and-yellow-catering-flat-illustrative-food-place-logo-rYbQJ_qtaz8.jpg" alt="Image not loaded" />
+            </div>
+            <div className = "nav-items">
+                <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Contact Us</li>
+                    <li>Cart</li>
+                </ul>
+            </div>
         </div>
-    
     )
-)
-     }
+}
+
+const AppLayout= () => {
+    return (
+        <Header></Header>
+    )
+}
+
 const root= ReactDOM.createRoot(document.getElementById("root"));
-root.render(<HeadingComponent />);
+root.render(<AppLayout />);
 
 
 
-// root.render(HeadingReact)
+
+
