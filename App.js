@@ -7,6 +7,7 @@ import ReactDOM from "react-dom";
     - nav-items
  body:
     restaurants container
+        -search
         -restaurants cards
  footer:
     contacts
@@ -37,15 +38,22 @@ const nameStyle= {
 }
 
 const RestoCard = (props) => {
-        const RestoObj= props.restoData;
+    const {restoData}= props;
+    
+    const {
+        name,
+        cloudinaryImageId, 
+        cuisines, 
+        costForTwo,
+        avgRating } = restoData?.info;
     return (
         <div className="resto-card">
-            <img className="resto-logo"  alt="resto-logo" src= {"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + RestoObj.info.cloudinaryImageId}/>
-            <h3 style={nameStyle} >{RestoObj.info.name}</h3>
-            <h4>{RestoObj.info.cuisines.join(", ")}</h4>
-            <h4>{RestoObj.info.costForTwo}</h4>
-            <h4>Rating : {RestoObj.info.avgRating}</h4>
-            <h4>Delivery Time : {RestoObj.info.sla.deliveryTime}</h4>
+            <img className="resto-logo"  alt="resto-logo" src= {"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + cloudinaryImageId}/>
+            <h3 style={nameStyle} >{name}</h3>
+            <h4>{cuisines.join(", ")}</h4>
+            <h4>{costForTwo}</h4>
+            <h4>Rating : {avgRating}</h4>
+            <h4>Delivery Time : {restoData.info.sla.deliveryTime}</h4>
         </div>
     )
 }
@@ -982,15 +990,14 @@ const Body = () => {
                 <h3>Search</h3>
             </div>
             <div className= "resto-container">
-                <RestoCard restoData= {RestoList[0]} ></RestoCard>
-                <RestoCard restoData= {RestoList[1]} ></RestoCard>
-                <RestoCard restoData= {RestoList[2]} ></RestoCard>
-                <RestoCard restoData= {RestoList[3]} ></RestoCard>
-                <RestoCard restoData= {RestoList[4]} ></RestoCard>
-                <RestoCard restoData= {RestoList[5]} ></RestoCard>
-                <RestoCard restoData= {RestoList[6]} ></RestoCard>
-                <RestoCard restoData= {RestoList[7]} ></RestoCard>
-
+            {
+                RestoList.map(
+                    (restaurant) => 
+                        (
+                            <RestoCard key={restaurant.info.id} restoData= {restaurant} />
+                        )
+                )
+            }
             </div>
         </div>
     )
