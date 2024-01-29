@@ -5,8 +5,8 @@ import Shimmer from "./Shimmer";
 const Body = () => {
     // console.log("body loading");
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
     const [searchText, setSearchText]  = useState("");
-    var listOfAllRestaurants = [];
     useEffect(()=>{
         fetchData();
     }, [])
@@ -16,9 +16,8 @@ const Body = () => {
         const json= await info.json();
         console.log(json); 
         //optional chaining
-        listOfAllRestaurants = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        setListOfRestaurants(listOfAllRestaurants);
-
+        setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
 
    
@@ -33,9 +32,10 @@ const Body = () => {
                     }} />
                     <button className="search-btn" onClick={()=>{
                         const searchedRestaurantsList= listOfRestaurants.filter(restaurant => restaurant.info.cuisines.join("").toLowerCase().includes(searchText.toLowerCase()));
-                        setListOfRestaurants(searchedRestaurantsList);
+                        setFilteredRestaurants(searchedRestaurantsList);
                     }}>Search </button>
                 </div>
+
                 <button className="filter-btn"  
                     onClick={ () => {
                         let topRatedList = listOfRestaurants.filter(restaurant => restaurant.info.avgRating > 4.2)
@@ -45,7 +45,7 @@ const Body = () => {
             </div>
             <div className= "resto-container">
             {
-                listOfRestaurants.map(
+                filteredRestaurants.map(
                     (restaurant) => 
                         (
                             <RestaurantCard key={restaurant.info.id} restoData= {restaurant} />
