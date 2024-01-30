@@ -73,3 +73,6 @@
 .filter{
     display: flex;
 }
+.items-list{
+    list-style-type: none;
+}
