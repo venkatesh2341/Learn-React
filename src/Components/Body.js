@@ -10,6 +10,14 @@ const Body = () => {
     const [searchText, setSearchText]  = useState("");
     useEffect(()=>{
         fetchData();
+        const timer= setInterval(()=>{
+            console.log("Timer")
+        }, 2*1000)
+
+        return ()=>{
+            clearInterval(timer);
+            console.log("Works like componentWillUnmount() ")
+        }
     },[])
 
     const fetchData = async ()=>{
@@ -19,6 +27,9 @@ const Body = () => {
         //optional chaining
         setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
+
+        
     };
 
    
