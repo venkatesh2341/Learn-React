@@ -18,11 +18,7 @@ class OwnerClass extends React.Component{
                         count: this.state.count+1
                     });
                 }}>Increase Count</button>
-                <button onClick={()=>{
-                    this.setState({
-                        count : this.state.count-1
-                    })
-                }}>Decrease Count</button>
+                
                 <h1>Name: {this.props.name}</h1>
                 <h2>Location : {this.props.location}</h2>
                 <h3>Contact : @V.mail.com</h3>
