@@ -1,28 +1,51 @@
 import React from "react";
-class OwnerClass extends React.Component{
+import Shimmer from "./Shimmer"
+class OwnerClass extends React.Component
+{
+    constructor(){
+        super()
 
-    constructor(props){
-        super(props);
         this.state = {
-            count: 1
+            ownerData :null
         }
     }
+    
+    async componentDidMount()
+    {
+        const info = await fetch("https://api.github.com/users/venkatesh2341");
+        const json= await info.json();
+        console.log(json);
+        this.setState({
+            ownerData : json
+        })
+
+    }
+
+    componentDidUpdate(){
+        console.log("Component Updated");
+    }
+     
+    componentWillUnmount(){
+        console.log("Compoenet will unmount");
+    }
+
 
     render(){
+        if(this.state.ownerData === null )
+        {
+            return (<Shimmer/>)
+        }
+        // debugger
+        const {name, avatar_url, location} = this.state.ownerData
         return (
-
-            <div className="owner-card">
-                <h1>Count1 :  {this.state.count}</h1>
-                <button onClick={()=>{
-                    this.setState({
-                        count: this.state.count+1
-                    });
-                }}>Increase Count</button>
+            
+            <div>
+                <img src= {avatar_url} />
+                <h1>Name :{name}</h1>
+                <h2>Location : {location} </h2>
                 
-                <h1>Name: {this.props.name}</h1>
-                <h2>Location : {this.props.location}</h2>
-                <h3>Contact : @V.mail.com</h3>
             </div>
+
         )
     }
 }

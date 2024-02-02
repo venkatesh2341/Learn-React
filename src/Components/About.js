@@ -8,8 +8,8 @@ const About= ()=>{
             <h1>About</h1>
             <h2>AnVe App delivers your food from nearby restaurants</h2>
             {/* <Owner name="Venkatesh (Function)"/> */}
-            {/* <OwnerClass name="Karri Venkatesh (Class)" location = "Vizag"/> */}
-            <ParentClass />
+            <OwnerClass />
+            
         </div>
     )
 }
