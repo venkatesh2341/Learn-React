@@ -76,3 +76,9 @@
 .items-list{
     list-style-type: none;
 }
+
+.owner-card{
+    padding: 10px;
+    border: 1px black solid;
+    margin: 10px;
+}
