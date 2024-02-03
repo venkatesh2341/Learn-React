@@ -10,6 +10,7 @@ const Body = () => {
     const [searchText, setSearchText]  = useState("");
     useEffect(()=>{
         fetchData();
+        
         const timer= setInterval(()=>{
             console.log("Timer")
         }, 2*1000)
