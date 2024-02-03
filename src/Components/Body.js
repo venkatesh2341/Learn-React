@@ -1,6 +1,7 @@
-import RestoList from "../utils/mockData";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/customeHooks/useOnlineStatus";
+
 import {Link} from "react-router-dom";
 import { useState , useEffect } from "react";
 const Body = () => {
@@ -10,17 +11,9 @@ const Body = () => {
     const [searchText, setSearchText]  = useState("");
     useEffect(()=>{
         fetchData();
-        
-        const timer= setInterval(()=>{
-            console.log("Timer")
-        }, 2*1000)
-
-        return ()=>{
-            clearInterval(timer);
-            console.log("Works like componentWillUnmount() ")
-        }
     },[])
 
+   
     const fetchData = async ()=>{
         const info = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4400802&lng=78.3489168&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json= await info.json();
@@ -33,6 +26,14 @@ const Body = () => {
         
     };
 
+    const onlineStatus = useOnlineStatus();
+    console.log(onlineStatus)
+    if(onlineStatus === false)
+    {
+        return (
+            <h1>You are offline..! Check the internet connection.</h1>
+        )
+    }
    
     return (listOfRestaurants.length === 0)? (<Shimmer/>) : (
         <div className= "body">
