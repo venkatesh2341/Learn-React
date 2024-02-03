@@ -39,9 +39,9 @@ class OwnerClass extends React.Component
         const {name, avatar_url, location} = this.state.ownerData
         return (
             
-            <div>
-                <img src= {avatar_url} />
-                <h1>Name :{name}</h1>
+            <div className="m-5 items-center" >
+                <img className="h-32 w-32"  src= {avatar_url} />
+                <h1>Name : {name}</h1>
                 <h2>Location : {location} </h2>
                 
             </div>
