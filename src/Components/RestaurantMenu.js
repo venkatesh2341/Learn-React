@@ -1,16 +1,24 @@
 import Shimmer from "./Shimmer";
-import {useParams} from "react-router-dom";
 import useRestaurantMenu from "../utils/customeHooks/useRestaurantMenu"
+import ItemCard from "./ItemCard";
+import {useParams} from "react-router-dom";
+import {useState} from "react";
+import ItemsCategoryCard from "./ItemCategoryCard";
+
 
 const RestaurantMenu = () => {
     const {resId} = useParams();
     const menuInfo= useRestaurantMenu(resId);
+  
+   
     if(menuInfo === null)
     {
         return <Shimmer />
     }  
     const {name, costForTwoMessage, locality,} = menuInfo?.data?.cards[0]?.card?.card?.info;
-    const itemsList= menuInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards ;
+    var itemsTypeList= menuInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+    itemsTypeList= itemsTypeList.filter(item=> ( item?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"  || item?.card?.card?.["@type"] ===  "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"))
+    // console.log(itemsTypeList)
     return (
         <div className="restaurant-menu m-10">
             <h1 className="text-center font-bold text-4xl text-cyan-950">{name}</h1>
@@ -21,12 +29,13 @@ const RestaurantMenu = () => {
             </div>
             
        
-            <ul className="items-list bg-purple-50">
+            <ul className="items-list bg-purple-50 w-8/12 m-auto">
                {
-                 itemsList.map((item) =>  (
-                 <li className=" p-3 m-2 text-center cursor-pointer" key = {item?.card?.info?.id}>
-                    {item?.card?.info?.name} - Rs: {item?.card?.info?.price/100}</li>) 
-                 )
+                    itemsTypeList.map(itemType => 
+                        (  
+                            <ItemsCategoryCard key={itemType?.card?.card?.title} itemType={itemType}/>   
+                        )
+                    )
                }
             </ul>
         </div>

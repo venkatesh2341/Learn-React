@@ -14,7 +14,7 @@ class OwnerClass extends React.Component
     {
         const info = await fetch("https://api.github.com/users/venkatesh2341");
         const json= await info.json();
-        console.log(json);
+       // console.log(json);
         this.setState({
             ownerData : json
         })

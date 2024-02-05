@@ -19,7 +19,7 @@ const Body = () => {
     const fetchData = async ()=>{
         const info = await fetch(RESTAURANT_LINK);
         const json= await info.json();
-        console.log(json); 
+        //console.log(json); 
         //optional chaining
         setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -29,7 +29,7 @@ const Body = () => {
     };
 
     const onlineStatus = useOnlineStatus();
-    console.log(onlineStatus)
+    //console.log(onlineStatus)
     if(onlineStatus === false)
     {
         return (
