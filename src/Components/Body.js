@@ -1,4 +1,5 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard , {withPromotedLabel}from "./RestaurantCard";
+import { RESTAURANT_LINK } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/customeHooks/useOnlineStatus";
 
@@ -9,13 +10,14 @@ const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
     const [searchText, setSearchText]  = useState("");
+    const PromotedRestaurant = withPromotedLabel(RestaurantCard);
     useEffect(()=>{
         fetchData();
     },[])
 
    
     const fetchData = async ()=>{
-        const info = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4400802&lng=78.3489168&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const info = await fetch(RESTAURANT_LINK);
         const json= await info.json();
         console.log(json); 
         //optional chaining
@@ -64,7 +66,10 @@ const Body = () => {
                 filteredRestaurants.map(
                     (restaurant) => 
                         (
-                          <Link  key={restaurant.info.id} to= {"/restaurant/" + restaurant.info.id }>    <RestaurantCard key={restaurant.info.id} restoData= {restaurant} /> </Link>
+                          <Link  key={restaurant.info.id} to= {"/restaurant/" + restaurant.info.id }> 
+                          { restaurant.info.avgRating < 4.2  ? (<PromotedRestaurant restoData= {restaurant} />) :  (<RestaurantCard restoData= {restaurant} />) }
+                          {/* <RestaurantCard restoData= {restaurant} /> */}
+                          </Link>
                         )
                 )
             }
