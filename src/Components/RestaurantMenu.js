@@ -9,6 +9,7 @@ import ItemsCategoryCard from "./ItemCategoryCard";
 const RestaurantMenu = () => {
     const {resId} = useParams();
     const menuInfo= useRestaurantMenu(resId);
+    const [showItemsIndex, SetShowItemsIndex ] = useState(null)
   
    
     if(menuInfo === null)
@@ -31,9 +32,14 @@ const RestaurantMenu = () => {
        
             <ul className="items-list bg-purple-50 w-8/12 m-auto">
                {
-                    itemsTypeList.map(itemType => 
+                    itemsTypeList.map((itemType , index) => 
                         (  
-                            <ItemsCategoryCard key={itemType?.card?.card?.title} itemType={itemType}/>   
+                            <ItemsCategoryCard key={itemType?.card?.card?.title} 
+                                               itemType={itemType}
+                                               showItems ={index=== showItemsIndex? true : false}
+                                               SetShowItemsIndex ={ ()=>SetShowItemsIndex(index) }
+                                               SetShowItemsNull = { ()=>SetShowItemsIndex(null)}
+                                               />   
                         )
                     )
                }
