@@ -1,5 +1,6 @@
 import React from "react";
 import Shimmer from "./Shimmer"
+import UserContext from "../utils/UserContext";
 class OwnerClass extends React.Component
 {
     constructor(){
@@ -22,11 +23,11 @@ class OwnerClass extends React.Component
     }
 
     componentDidUpdate(){
-        console.log("Component Updated");
+        // console.log("Component Updated");
     }
      
     componentWillUnmount(){
-        console.log("Compoenet will unmount");
+        // console.log("Compoenet will unmount");
     }
 
 
@@ -43,6 +44,14 @@ class OwnerClass extends React.Component
                 <img className="h-32 w-32"  src= {avatar_url} />
                 <h1>Name : {name}</h1>
                 <h2>Location : {location} </h2>
+                <h2>
+                    <UserContext.Consumer>
+                       {
+                        ({loggedInUser})=> <li>{loggedInUser}</li>
+                       }
+                    </UserContext.Consumer>
+                </h2>
+                
                 
             </div>
 

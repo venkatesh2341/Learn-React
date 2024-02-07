@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import {LOGO_LINK} from "../utils/constants";
-import { useState } from "react";
+import { useState , useContext} from "react";
 import {Link} from "react-router-dom";
 import useOnlineStatus from "../utils/customeHooks/useOnlineStatus"
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
     let  [btnName, setBtnName]= useState( "Login");
     const onlineStatus = useOnlineStatus();
+    const {loggedInUser }= useContext(UserContext);
     return (
         <div className= "header flex justify-between border border-black border-1 h-28 my-2 bg-slate-100 shadow-orange-200 shadow-lg">
             <div className = "logo-container">
@@ -38,7 +40,7 @@ const Header = () => {
                             setBtnName((btnName==="Login")?"Logout":"Login");
                         }}>{btnName}</button>
                     </li>
-                    
+                    <li>{loggedInUser}</li>
                 </ul>
             </div>
         </div>
