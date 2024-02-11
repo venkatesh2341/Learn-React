@@ -1,8 +1,14 @@
 import { CDN_LINK } from "../utils/constants";
 import {useState} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem } from "../utils/Redux/cartSlice";
 
 const ItemCard= ({itemCard})=>{
     const {name, isVeg, price, defaultPrice, description, imageId} = itemCard?.card?.info
+    // Subscribing to the cart slice of store
+    const cartItems = useSelector((store)=> store.cart.items)
+    const dispatch= useDispatch();
+    // console.log(cartItems)
     return (
         <div className ="text-left  border-b-2 p-2 m-2 flex "> 
             <div className="w-9/12">
@@ -14,7 +20,10 @@ const ItemCard= ({itemCard})=>{
                
                 {imageId  && <img className="h-20 w-28 mx-auto rounded-md" src={CDN_LINK + imageId}  alt = "Item Image"/>}
                 <div className="mx-auto text-center">
-                    <button className= "rounded-md bg-white text-green-400  ">Add +</button>
+                    <button className= "rounded-md bg-white text-green-400 " onClick={()=>{
+                        dispatch(addItem(itemCard));
+                      
+                    }}>Add +</button>
                 </div>
             </div>
         </div>
